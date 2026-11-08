@@ -8,7 +8,7 @@
 
 ## Сборка
 
-PDF собирается автоматически в GitHub Actions. Готовый файл: **Actions → Build article PDF → успешный запуск → Artifacts → article-pdf**.
+PDF собирается автоматически в GitHub Actions. Готовый файл: **Actions → Build → успешный запуск → Artifacts → article.pdf**.
 
 Локально, с установленным Tectonic:
 
