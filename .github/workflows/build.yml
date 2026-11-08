@@ -1,13 +1,18 @@
-name: Build
+name: Build article PDF
 
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   latex:
     # Times New Roman и Courier New уже есть в образе Windows.
     # На ubuntu-latest их нет, и класс уходит в запасной TeX Gyre.
+    timeout-minutes: 20
     runs-on: windows-latest
     defaults:
       run:
@@ -53,28 +58,16 @@ jobs:
           EOF
           tectonic -o .ci-fontcheck .ci-fontcheck/fontcheck.tex
 
-      - name: Build template
-        run: mkdir -p build && tectonic -o build article.tex
-
-      - name: Build example
-        if: always() && steps.fonts.outcome == 'success'
-        working-directory: example
+      - name: Build article
         run: |
-          rm -f misisarticle.cls
-          cp ../misisarticle.cls misisarticle.cls
           mkdir -p build
-          tectonic -o build example.tex
+          tectonic --keep-logs -o build article.tex
 
       - name: Upload article PDF
-        if: always() && steps.fonts.outcome == 'success' && hashFiles('build/article.pdf') != ''
         uses: actions/upload-artifact@v7
         with:
+          name: article-pdf
+          archive: true
           path: build/article.pdf
-          archive: false
-
-      - name: Upload example PDF
-        if: always() && steps.fonts.outcome == 'success' && hashFiles('example/build/example.pdf') != ''
-        uses: actions/upload-artifact@v7
-        with:
-          path: example/build/example.pdf
-          archive: false
+          if-no-files-found: error
+          retention-days: 30
