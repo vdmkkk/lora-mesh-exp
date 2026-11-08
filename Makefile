@@ -12,7 +12,7 @@ example:
 	mkdir -p example/build
 	cd example && $(LATEX) -o build example.tex
 
-# Zip for Overleaf; include the article's metadata and sections.
+# Архив для Overleaf с метаданными и разделами статьи.
 dist: 
 	rm -rf dist
 	mkdir -p dist/misis-article

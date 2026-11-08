@@ -4,7 +4,7 @@
 
 Научный руководитель — Курочкин Илья Ильич.
 
-Статья по материалам [НИР-6](https://github.com/vdmkkk/graphs-sim/tree/main/НИР6) для курса «Научное письмо». Оформлена по [шаблону МИСИС](https://github.com/sadekovlar/misis-article-latex). Лицензия класса оформления — LPPL 1.3c (`LICENSE`).
+Статья для курса «Научное письмо». Оформлена по [шаблону МИСИС](https://github.com/sadekovlar/misis-article-latex). Лицензия класса оформления — LPPL 1.3c (`LICENSE`).
 
 ## Сборка
 
